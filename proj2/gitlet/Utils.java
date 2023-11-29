@@ -47,6 +47,7 @@ class Utils {
                     throw new IllegalArgumentException("improper type to sha1");
                 }
             }
+            // 输出格式化，%02x为16进制，不足2位补0
             Formatter result = new Formatter();
             for (byte b : md.digest()) {
                 result.format("%02x", b);
@@ -219,8 +220,6 @@ class Utils {
             throw error("Internal error serializing commit.");
         }
     }
-
-
 
     /* MESSAGES AND ERROR REPORTING */
 
