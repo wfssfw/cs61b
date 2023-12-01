@@ -114,7 +114,7 @@ public class Repository {
     }
 
     private static void saveAddStage() {
-        writeContents(AddStageFile, addStage);
+        writeObject(AddStageFile, addStage);
     }
 
     private static Stage readFromRemoveStage() {
@@ -125,7 +125,7 @@ public class Repository {
     }
 
     private static void saveRemoveStage() {
-        writeContents(RemoveStageFile, removeStage);
+        writeObject(RemoveStageFile, removeStage);
     }
 
     // 先读当前分支名字(HEAD_FILE), 再从HEADS_DIR找到该分支的当前CommitID

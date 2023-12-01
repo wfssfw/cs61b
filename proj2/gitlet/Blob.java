@@ -28,7 +28,7 @@ public class Blob implements Serializable {
     }
 
     public void save() {
-        writeContents(this.blobSave, this);
+        writeObject(this.blobSave, this);
     }
 
     public String getId() {
