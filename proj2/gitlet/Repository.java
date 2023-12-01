@@ -138,8 +138,8 @@ public class Repository {
 
     private static String readCurrCommitID() {
         String curBranch = readCurrBranch();
-        File HEAD_FILE = join(HEADS_DIR, curBranch);
-        return readContentsAsString(HEAD_FILE);
+        File HEADS_FILE = join(HEADS_DIR, curBranch);
+        return readContentsAsString(HEADS_FILE);
     }
 
     private static String readCommitIDByBranch(String branchName) {
