@@ -46,7 +46,7 @@ public class Commit implements Serializable {
 
     // init commit的构造函数
     public Commit() {
-        this.message = "init commit";
+        this.message = "initial commit";
         this.pathblobIDs = new HashMap<>();
         this.parents = new ArrayList<>();
         this.curTime = new Date(0);
@@ -60,7 +60,8 @@ public class Commit implements Serializable {
     }
 
     private String genCommitID(String message, Map<String, String> blobs, List<String> parents, String timeStamp) {
-        return Utils.sha1(timeStamp, message, parents,toString(), blobs.toString());
+        System.out.println(timeStamp + " " + message + " " + parents.toString() + " " + blobs.toString());
+        return Utils.sha1(timeStamp, message, parents.toString(), blobs.toString());
     }
 
     private File genSaveCommitPath() {
@@ -72,7 +73,7 @@ public class Commit implements Serializable {
     }
 
     public void save() {
-        writeContents(this.saveCommitPath, this);
+        writeObject(this.saveCommitPath, this);
     }
 
     public File getSaveCommitPath() { return this.saveCommitPath; }
