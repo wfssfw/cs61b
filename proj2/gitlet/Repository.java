@@ -472,7 +472,7 @@ public class Repository {
     }
 
     private static void writeBlobToCWD(Blob blob) {
-        File beWritten = blob.getFileName();
+        File beWritten = join(CWD, blob.getFileName().getName());
         writeContents(beWritten, new String(blob.getContent(), StandardCharsets.UTF_8));
     }
 
