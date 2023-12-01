@@ -47,7 +47,7 @@ public class Repository {
     public static void init() {
         // 创建gitlet目录
         if (GITLET_DIR.exists()) {
-            System.out.println("gitlet已存在, 无需init");
+            System.out.println("A Gitlet version-control system already exists in the current directory.");
             System.exit(0);
         }
 
@@ -72,7 +72,7 @@ public class Repository {
     public static void add(String fileName) {
         File file = join(CWD, fileName);
         if (!file.exists()) {
-            message("File does not exist.");
+            System.out.println("File does not exist.");
             System.exit(0);
         }
 
