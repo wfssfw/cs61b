@@ -60,7 +60,6 @@ public class Commit implements Serializable {
     }
 
     private String genCommitID(String message, Map<String, String> blobs, List<String> parents, String timeStamp) {
-        System.out.println(timeStamp + " " + message + " " + parents.toString() + " " + blobs.toString());
         return Utils.sha1(timeStamp, message, parents.toString(), blobs.toString());
     }
 
