@@ -24,7 +24,7 @@ public class Blob implements Serializable {
     }
 
     private String genBolbID(byte[] content, File fileName) {
-        return sha1(content, filePath);
+        return sha1(filePath, content);
     }
 
     public void save() {
