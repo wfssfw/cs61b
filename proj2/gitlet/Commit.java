@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.*; // TODO: You'll likely use this in this class
 import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 import static gitlet.Repository.CWD;
 import static gitlet.Utils.*; // 注意要导入的是不是静态成员/方法
@@ -54,12 +55,12 @@ public class Commit implements Serializable {
     }
 
     private String dateToTimestamp(Date date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        DateFormat formatter = new SimpleDateFormat("EEE MMM d HH:mm:ss yyyy Z", Locale.US);
         return formatter.format(date);
     }
 
     private String genCommitID(String message, Map<String, String> blobs, List<String> parents, String timeStamp) {
-        String id = sha1(message, blobs, parents, timeStamp);
+        String id = sha1(message, blobs.toString(), parents,toString(), timeStamp);
         return id;
     }
 
