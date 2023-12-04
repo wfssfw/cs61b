@@ -34,13 +34,15 @@ public class Commit implements Serializable {
     private Date curTime;         // 时间戳，init commit为Date(0)
     private String id;            // commit的id
     private File saveCommitPath;  // commit的保存文件
+    private String timeStamp;
 
     public Commit(String message, Map<String, String> blobs, List<String> parents) {
         this.message = message;
         this.pathblobIDs = blobs;
         this.parents = parents;
         this.curTime = new Date();
-        this.id = genCommitID(message, blobs, parents, dateToTimestamp(this.curTime));
+        this.timeStamp = dateToTimestamp(this.curTime);
+        this.id = genCommitID();
         this.saveCommitPath = genSaveCommitPath();
     }
 
@@ -50,7 +52,8 @@ public class Commit implements Serializable {
         this.pathblobIDs = new HashMap<>();
         this.parents = new ArrayList<>();
         this.curTime = new Date(0);
-        this.id = genCommitID(this.message, this.pathblobIDs, this.parents, generateTimeStamp());
+        this.timeStamp = dateToTimestamp(this.curTime);
+        this.id = genCommitID();
         this.saveCommitPath = genSaveCommitPath();
     }
 
@@ -64,8 +67,8 @@ public class Commit implements Serializable {
         return dateFormat.format(curTime);
     }
 
-    private String genCommitID(String message, Map<String, String> blobs, List<String> parents, String timeStamp) {
-        return Utils.sha1(timeStamp, message, parents.toString(), blobs.toString());
+    private String genCommitID() {
+        return Utils.sha1(generateTimeStamp(), message, parents.toString(), pathblobIDs.toString());
     }
 
     private File genSaveCommitPath() {
