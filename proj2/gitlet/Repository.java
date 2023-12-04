@@ -80,6 +80,7 @@ public class Repository {
         String path = file.getPath();
         String id = blob.getId();
 
+
         addStage = readFromAddStage();
         removeStage = readFromRemoveStage();
         curCommit = readCurrentCommit();
@@ -161,6 +162,8 @@ public class Repository {
         // Create a new commit
         Map<String, String> addStageMap = new HashMap<>();
         Map<String, String> removeStageMap = new HashMap<>();
+        addStage = readFromAddStage();
+        removeStage = readFromRemoveStage();
         addStageMap.putAll(addStage.getPath2BolbId());
         removeStageMap.putAll(removeStage.getPath2BolbId());
 
