@@ -50,13 +50,18 @@ public class Commit implements Serializable {
         this.pathblobIDs = new HashMap<>();
         this.parents = new ArrayList<>();
         this.curTime = new Date(0);
-        this.id = genCommitID(this.message, this.pathblobIDs, this.parents, dateToTimestamp(this.curTime));
+        this.id = genCommitID(this.message, this.pathblobIDs, this.parents, generateTimeStamp());
         this.saveCommitPath = genSaveCommitPath();
     }
 
     private String dateToTimestamp(Date date) {
         DateFormat formatter = new SimpleDateFormat("EEE MMM d HH:mm:ss yyyy Z", Locale.US);
         return formatter.format(date);
+    }
+
+    private String generateTimeStamp() {
+        DateFormat dateFormat = new SimpleDateFormat("EEE MMM d HH:mm:ss yyyy Z", Locale.CHINA);
+        return dateFormat.format(curTime);
     }
 
     private String genCommitID(String message, Map<String, String> blobs, List<String> parents, String timeStamp) {
